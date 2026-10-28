@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: 9hits-proxy-pool
+    env: docker
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: singapore
+    healthCheckPath: /health
+    envVars:
+      - key: REFRESH_MINUTES
+        value: "120"
+      - key: TARGET_LIVE
+        value: "50"
+      - key: MAX_CANDIDATES
+        value: "800"
+      - key: TEST_WORKERS
+        value: "20"
+      # Secrets — set these in the Render dashboard, do NOT commit values here.
+      - key: NINEHITS_TOKEN
+        sync: false
+      - key: ADMIN_KEY
+        sync: false
